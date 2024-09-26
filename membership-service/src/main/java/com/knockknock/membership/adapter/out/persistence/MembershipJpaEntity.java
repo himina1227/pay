@@ -28,4 +28,8 @@ public class MembershipJpaEntity {
     private boolean isValid;
 
     private boolean isCorp;
+
+    public MembershipJpaEntity(String membershipName, String membershipEmail, String membershipAddress, boolean membershipIsValid, boolean membershipIsCorp) {
+
+    }
 }

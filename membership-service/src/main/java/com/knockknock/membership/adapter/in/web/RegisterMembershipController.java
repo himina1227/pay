@@ -1,8 +1,9 @@
 package com.knockknock.membership.adapter.in.web;
 
-import com.knockknock.membership.application.port.in.RegisterMemberhipUseCase;
+import com.knockknock.membership.application.port.in.RegisterMembershipUseCase;
 import com.knockknock.membership.application.port.in.RegisterMembershipCommand;
 import com.knockknock.membership.common.WebAdapter;
+import com.knockknock.membership.domain.Membership;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class RegisterMembershipController {
 
-    private final RegisterMemberhipUseCase registerMemberhipUseCase
+    private final RegisterMembershipUseCase registerMembershipUseCase;
 
     @PostMapping(path = "/membership/register")
-    public void registerMembership(@RequestBody RegisterMembershipRequest request) {
+    public Membership registerMembership(@RequestBody RegisterMembershipRequest request) {
         RegisterMembershipCommand command = RegisterMembershipCommand.builder()
                 .name(request.getName())
                 .address(request.getAddress())
@@ -25,6 +26,6 @@ public class RegisterMembershipController {
                 .isCorp(request.isCorp())
                 .build();
 
-        registerMemberhipUseCase.registerMembership(command);
+        return registerMembershipUseCase.registerMembership(command);
     }
 }
